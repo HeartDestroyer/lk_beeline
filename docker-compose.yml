@@ -1,0 +1,27 @@
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "127.0.0.1:6381:6379"
+  
+  worker:
+    depends_on:
+      - redis
+    env_file:
+      - .env
+    build:
+      context: .
+    environment:
+      BROKER_URL: redis://redis:6379/0
+    command: [ "taskiq", "worker", "app.taskiq.tasks:broker" ]
+  
+  scheduler:
+    depends_on:
+      - redis
+    env_file:
+      - .env
+    build:
+      context: .
+    environment:
+      BROKER_URL: redis://redis:6379/0
+    command: [ "taskiq", "scheduler", "app.taskiq.broker:scheduler", "app.taskiq.tasks", "--skip-first-run" ]
