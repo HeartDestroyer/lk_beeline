@@ -13,9 +13,9 @@ _CRON_TZ = "Asia/Yekaterinburg"
 
 @broker.task(
     schedule = [
-        {"cron": "0 05 10 * *", "args": [settings.LK_FINANCE_LOGIN, settings.LK_FINANCE_PASSWORD, Source.LK_FINANCE], "cron_offset": _CRON_TZ},
-        {"cron": "0 05 11 * *", "args": [settings.LK_ITSK_LOGIN, settings.LK_ITSK_PASSWORD, Source.LK_ITSK], "cron_offset": _CRON_TZ},
-        {"cron": "0 05 12 * *", "args": [settings.LK_TECHNOLOGY_LOGIN, settings.LK_TECHNOLOGY_PASSWORD, Source.LK_TECHNOLOGY], "cron_offset": _CRON_TZ},
+        {"cron": "0 10 5 * *", "args": [settings.LK_FINANCE_LOGIN, settings.LK_FINANCE_PASSWORD, Source.LK_FINANCE], "cron_offset": _CRON_TZ},
+        {"cron": "0 11 5 * *", "args": [settings.LK_ITSK_LOGIN, settings.LK_ITSK_PASSWORD, Source.LK_ITSK], "cron_offset": _CRON_TZ},
+        {"cron": "0 12 5 * *", "args": [settings.LK_TECHNOLOGY_LOGIN, settings.LK_TECHNOLOGY_PASSWORD, Source.LK_TECHNOLOGY], "cron_offset": _CRON_TZ},
     ]
 )
 async def task_data_from_lk(login: str, password: str, source: Source) -> None:

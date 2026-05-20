@@ -87,15 +87,15 @@ def download(driver: webdriver.Chrome, wait: WebDriverWait) -> None:
     """
     request_link = wait.until(presence_of_element_located((By.XPATH, "//div[contains(@class, 'request-created')]/a")))
     
-    # 3 минуты ожидания формирования отчета на стороне Билайна
-    time.sleep(180)
+    # 6 минут ожидания формирования отчета на стороне Билайна
+    time.sleep(360)
     
     driver.get(request_link.get_attribute("href"))
     download_button = wait.until(element_to_be_clickable((By.ID, "j_idt343:j_idt424:0:j_idt440")))
     download_button.click()
     
-    # Полторы минуты на скачивание файла
-    time.sleep(90)
+    # 3 минуты на скачивание файла
+    time.sleep(180)
 
 def read_file(path: str) -> list[str]:
     """
